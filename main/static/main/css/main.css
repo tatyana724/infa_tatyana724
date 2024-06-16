@@ -1,0 +1,294 @@
+body {
+    background-image: url("/static/main/img/background1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+img {
+    width: 120px;
+    height: auto;
+    /* float: left; */
+}
+
+.icons {
+    display: flex;
+    transform: translate(420%, -140%);
+    /* float: left; */
+}
+
+.icons img {
+    width: 25px;
+    height: 25px;
+    margin-right: 30px; /* Добавляем расстояние между картинками */
+}
+
+.icons a {
+    display: block; /* Расширяем ссылку на всю область картинки */
+}
+
+.icons a:hover img {
+    opacity: 0.7; /* Добавляем эффект изменения прозрачности при наведении на картинку */
+}
+
+.logo-container {
+    display: flex; /* Используем flexbox для расположения элементов в строку */
+    align-items: flex-end; /* Выравниваем элементы по нижнему краю */
+}
+
+.login-overlay {
+    position: absolute;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255,255,255,0.5); /* Цвет прямоугольника */
+    padding: 10px;
+    border-radius: 10px;
+    color: #191970;
+}
+
+.login-overlay input {
+    width: 200px;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    color: #191970;
+}
+
+.password-overlay {
+    position: absolute;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255,255,255,0.5); /* Цвет прямоугольника */
+    padding: 10px;
+    border-radius: 10px;
+    color: #191970;
+}
+
+.password-overlay input {
+    width: 200px;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    color: #082752;
+}
+
+.logo-text {
+    font-size: 28px;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    display: block;
+    flex-direction: column; /* Столбцы вместо строк */
+    margin-left: 5px; /* Добавляем отступ слева для разделения от изображения */
+}
+
+.logo-gold {
+    color : rgba(245, 176, 81, 1);
+}
+.logo-siberia {
+    color: rgba(67, 99, 135, 1);
+}
+.gold, .siberia {
+    margin: 0; /* Убираем отступы у текста */
+}
+
+.altai-info {
+    background-color: rgba(255,255,255,0.5); /* Прозрачный квадрат */
+    margin-top: 20px; /* Отступ сверху */
+    padding: 20px;
+    color: #191970;
+    position: absolute;
+    left: 20%;
+    transform: translate(-30%, 15%);
+    border-radius: 10px;
+    width: 600px;
+    word-spacing: 10px;
+}
+h5 {
+line-height: 1.5;
+}
+
+.altai-info p {
+    margin: 30px 0;
+}
+
+.altai-drive {
+    background-color: rgba(255,255,255,0.5); /* Прозрачный квадрат */
+    margin-top: 20px; /* Отступ сверху */
+    padding: 20px;
+    color: #8B4513;
+    position: absolute;
+    left: 20%;
+    transform: translate(-30%, 220%);
+    border-radius: 10px;
+    width: 600px;
+    word-spacing: 10px;
+}
+
+.altai-drive p {
+    margin: 30px 0;
+}
+
+.knopki {
+    font-size: 14px;
+    display: block;
+    transform: translate(780%, -50%);
+}
+
+.registration {
+    background: none;
+    color: #191970; /* Цвет текста кнопки */
+    cursor: pointer; /* Курсор при наведении на кнопку */
+    border: none;
+    outline: none;
+}
+.login-to-account {
+    background: none;
+    color: #191970; /* Цвет текста кнопки */
+    cursor: pointer; /* Курсор при наведении на кнопку */
+    border: 0;
+    outline: none;
+}
+/*.gold {
+    font-size: 24px;
+    color: gold;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    margin-bottom: -15px;
+}
+
+.siberia {
+    font-size: 24px;
+    color: #191970;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    margin-top: -10px;
+}
+.logo {
+    display: block;
+} */
+
+aside h3 {
+    margin-left: 50px;
+    font-size: 28px;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    transform: translate(0%, 40%);
+    }
+aside ul li {
+    color: #191970;
+    display: inline;
+    margin: 60px;
+    font-size: 20px;
+    /*font-weight: bold;*/
+    transition: all.6s ease;
+}
+
+aside ul li:hover, aside ul a:hover {
+    color: #eb5959;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+aside ul1 {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    }
+aside ul1 li1 {
+    color: #8B4513;
+    display: inline;
+    margin: 60px;
+    font-size: 30px;
+    /*font-weight: bold;*/
+    transition: all.6s ease;
+    position: absolute;
+    left: 35%;
+    transform: translate(140%, 1700%);
+    background-color: rgba(255,255,255,0.5); /* Цвет прямоугольника */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+aside p1 {
+    display: block;
+    color: #000;
+    transform: translate(5%, 7800%);
+}
+aside p2 {
+    display: block;
+    color: #000;
+    transform: translate(90%, 7500%);
+}
+
+.reg-info p{
+    text-align: center;
+    color: #191970;
+}
+
+.reg-scoreboard {
+    background-color: rgba(255,255,255,0.5); /* Прозрачный квадрат */
+    margin-top: 20px; /* Отступ сверху */
+    padding: 20px;
+    color: #191970;
+    position: absolute;
+    left: 20%;
+    transform: translate(-30%, 15%);
+    border-radius: 10px;
+    width: 600px;
+    word-spacing: 10px;
+}
+
+.login-overlay1 {
+    position: absolute;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255,255,255,0.5); /* Цвет прямоугольника */
+    padding: 10px;
+    border-radius: 10px;
+    color: #191970;
+}
+
+.login-overlay1 input {
+    width: 200px;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    color: #191970;
+}
+
+.password-overlay1 {
+    position: absolute;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255,255,255,0.5); /* Цвет прямоугольника */
+    padding: 10px;
+    border-radius: 10px;
+    color: #191970;
+}
+
+.password-overlay1 input {
+    width: 200px;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    color: #082752;
+}
+
+.password-overlay2 {
+    position: absolute;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255,255,255,0.5); /* Цвет прямоугольника */
+    padding: 10px;
+    border-radius: 10px;
+    color: #191970;
+}
+
+.password-overlay2 input {
+    width: 200px;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    color: #082752;
+}
+

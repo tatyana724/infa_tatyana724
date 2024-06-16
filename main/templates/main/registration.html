@@ -1,0 +1,12 @@
+{% extends 'main/layoutreg.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+    <!--<h1>Главная страница</h1>
+    <p>Главная страница</p>-->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
+{% endblock %}

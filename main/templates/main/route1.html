@@ -1,0 +1,271 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Маршрут{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+</head>
+<body>
+    <aside>
+        <div class="logo-container">
+            <img src="{% static 'main/img/logo_simple.png' %}" alt="Лого">
+            <div class="logo-text">
+                <div class="logo-gold">
+                    <span class="gold">Золото</span>
+                </div>
+                <div class="logo-siberia">
+                    <span class="siberia">Сибири</span>
+                </div>
+            </div>
+            <div class="login-overlay">
+                <input type="text" placeholder="Введите логин">
+            </div>
+            <div class="password-overlay">
+                <input type="text" placeholder="Введите пароль">
+            </div>
+            <div class="knopki">
+                <div class="login-to-account">
+                    <button type="submit">Войти</button>
+                </div>
+                <div class="registration">
+                    <button type="submit"><a href="/registration"></a> Регистрация</button>
+                </div>
+            </div>
+            <div class="icons">
+                <a href=""><img src="{% static 'main/img/search.png' %}" alt="Поиск"></a>
+                <a href=""><img src="{% static 'main/img/heart.png' %}" alt="Избранное"></a>
+                <a href="/user"><img src="{% static 'main/img/user.png' %}" alt="Пользователь"></a>
+                <a href=""><img src="{% static 'main/img/envelope.png' %}" alt="Обратная связь"></a>
+            </div>
+        </div>
+
+
+        <!--<h3>Навигация</h3>-->
+        <ul>
+            <a href="/attraction"><li>достопримечательности</li></a>
+            <a href="/route"><li>маршрут</li></a>
+            <a href="/about"><li>о нас</li></a>
+        </ul>
+
+            <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+            <script src="https://unpkg.com/@2gis/mapgl-directions@^2/dist/directions.js"></script>
+            <style>
+                #map {
+                    width: 500px;
+                    height: 300px;
+                }
+            </style>
+        </head>
+
+
+            <script type="text/javascript">
+                var map;
+                var route;
+
+                DG.then(function () {
+                    map = DG.map('map', {
+                        center: [53.35, 83.76],
+                        zoom: 7,
+                        key: 'd80ee4e8-1f44-4539-b920-efa23d229a3b'
+                    });
+
+                    const locations = [
+                        { coord: [51.905, 85.853], name: 'Озеро Ая' },
+                        { coord: [52.86, 78.61], name: 'Озеро Яровое' },
+                        { coord: [51.994, 84.972], name: 'санаторий Белокуриха' },
+                        { coord: [52.0655, 85.7245], name: 'гора Бабырган' },
+                        { coord: [51.295, 82.648], name: 'озеро Белое' },
+                        { coord: [52.4127, 85.7136], name: 'Памятник В.М. Шукшину' },
+                        { coord: [52.2922, 85.65491], name: 'Лебединый заказник' },
+                        { coord: [51.37, 82.195], name: 'Колыванское озеро' },
+                        { coord: [51.361928, 84.58991], name: 'Шинокские водопады' },
+                        { coord: [51.397329, 84.676544], name: 'Денисова пещера' },
+                        { coord: [51.939438, 84.897027], name: 'Мишина гора' },
+                        { coord: [51.185104, 83.689641], name: 'Царский курган' },
+                        { coord: [51.967486, 84.926037], name: 'гора Церковка' },
+                        { coord: [53.260253, 83.576881], name: 'Барнаульский ленточный бор' },
+                        { coord: [53.215473, 84.636597], name: 'Музей Г.С. Титова' },
+                        { coord: [52.970537, 79.512385], name: 'Озеро Кулундинское' },
+                        { coord: [51.693768, 79.737422], name: 'Озеро Малиновое' },
+                        { coord: [53.117166, 82.479751], name: 'Касмалинский заказник' },
+                        { coord: [51.600329, 82.287201], name: 'Музей М.Т. Калашникова' },
+                        { coord: [51.781934, 84.992012], name: 'Маральник "Никольское"' }
+
+                    ];
+
+            locations.forEach(location => {
+                const marker = DG.marker(location.coord).addTo(map);
+                marker.bindTooltip(location.name, { permanent: true, direction: 'top' }).openTooltip();
+            });
+            });
+
+
+
+
+            </script>
+
+            </head>
+            <body>
+                <div class=map_>
+                    <div id="map" style="width:1150px; height:700px"></div>
+                </div>
+            </body>
+        </div>
+
+        <style>
+            body {
+                background-image: url("/static/main/img/attractions.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            .reg-info h2{
+                text-align: center;
+                color: #191970;
+                margin-top: 70px;
+            }
+
+            .reg-scoreboard {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: rgba(255,255,255,0.5); /* Прозрачный квадрат */
+                margin-top: 20px; /* Отступ сверху */
+                padding: 20px;
+                color: #191970;
+                position: absolute;
+                left: 40%;
+                transform: translate(-30%, 5%);
+                border-radius: 10px;
+                width: 800px;
+                height: 600px;
+                word-spacing: 10px;
+            }
+
+            .login-overlay1 {
+                position: absolute;
+                left: 18%;
+                transform: translate(-10%, 100%);
+                background-color: rgba(255,255,255,0.5); /* Цвет прямоугольника */
+                padding: 10px;
+                border-radius: 10px;
+                color: #191970;
+                width: 650px;
+            }
+
+            .login-overlay1 input {
+                width: 630px;
+                padding: 10px;
+                border: none;
+                background-color: transparent;
+                color: #191970;
+            }
+
+            .password-overlay1 {
+                position: absolute;
+                left: 18%;
+                transform: translate(-10%, 320%);
+                background-color: rgba(255,255,255,0.5); /* Цвет прямоугольника */
+                padding: 10px;
+                border-radius: 10px;
+                color: #191970;
+                width: 650px;
+            }
+
+            .password-overlay1 input {
+                width: 630px;
+                padding: 10px;
+                border: none;
+                background-color: transparent;
+                color: #082752;
+            }
+
+            .password-overlay2 {
+                position: absolute;
+                left: 18%;
+                transform: translate(-10%, 540%);
+                background-color: rgba(255,255,255,0.5); /* Цвет прямоугольника */
+                padding: 10px;
+                border-radius: 10px;
+                color: #191970;
+                width: 650px;
+            }
+
+            .password-overlay2 input {
+                width: 630px;
+                padding: 10px;
+                border: none;
+                background-color: transparent;
+                color: #082752;
+            }
+            .button_cancel_register {
+                display: flex;
+                font-size: 16px;
+                transform: translate(48%, 800%);
+                justify-content: flex-start;
+            }
+            .cancel {
+                background: none;
+                color: #191970; /* Цвет текста кнопки */
+                cursor: pointer; /* Курсор при наведении на кнопку */
+                border: none;
+                outline: none;
+                padding: 10px 20px; /* Увеличиваем отступы внутри кнопки */
+                font-size: 20px; /* Увеличиваем размер шрифта */
+            }
+            .register {
+                color: #191970; /* Цвет текста кнопки */
+                cursor: pointer; /* Курсор при наведении на кнопку */
+                border: none;
+                outline: none;
+                padding: 10px 20px; /* Увеличиваем отступы внутри кнопки */
+                font-size: 20px; /* Увеличиваем размер шрифта */
+            }
+            aside p1 {
+                display: block;
+                color: #000;
+                transform: translate(5%, 3200%);
+            }
+            aside p2 {
+                display: block;
+                color: #000;
+                transform: translate(90%, 2900%);
+            }
+            aside h4 {
+                display: block;
+                color: #191970;
+            }
+            .map_ {
+                position: absolute;
+                transform: translate(15%, 5%);
+            }
+
+            .inscription1 {
+                transform: translate(-380%, 80%);
+            }
+            .inscription2 {
+                transform: translate(-300%, 355%);
+            }
+            .inscription3 {
+                transform: translate(-85%, 640%);
+            }
+        </style>
+
+        <p1>Шпигальских А.В.</p1>
+        <p1>Ожогина Т.А.</p1>
+        <p1>почта@mail.com</p1>
+
+        <p2>Связь с нами</p2>
+    </aside>
+    <main>
+    {% block content %}
+    {% endblock %}
+    </main>
+</body>
+</html>

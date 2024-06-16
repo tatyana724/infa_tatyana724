@@ -1,0 +1,225 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+</head>
+<style>
+            body {
+                display: flex;
+                height: 95vh;
+                width: 95vw;
+                background-image: url("/static/main/img/1.jpeg");
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            a{
+                text-decoration: none;
+                }
+            .reg-scoreboard {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: rgba(255,255,255,0.5); /* Прозрачный квадрат */
+                margin-top: 20px; /* Отступ сверху */
+                padding: 20px;
+                color: #191970;
+                position: absolute;
+                left: 40%;
+                transform: translate(-30%, 5%);
+                border-radius: 10px;
+                width: 800px;
+                height: 730px;
+                word-spacing: 10px;
+            }
+            .about {
+                position: absolute;
+                left: 18%;
+                transform: translate(60%, 85%);
+                background-color: rgba(255,255,255,0.5); /* Цвет прямоугольника */
+                padding: 10px;
+                border-radius: 10px;
+                border: none;
+                color: #191970;
+                width: 380px;
+                height: 200px;
+            }
+            .about input {
+                width: 360px;
+                height: 180px;
+                padding: 10px;
+                border: none;
+                background-color: transparent;
+                color: #191970;
+            }
+            .button_cancel_save {
+                display: flex;
+                font-size: 16px;
+                transform: translate(53%, 950%);
+                justify-content: flex-start;
+            }
+            .cancel {
+                background: none;
+                color: #191970; /* Цвет текста кнопки */
+                cursor: pointer; /* Курсор при наведении на кнопку */
+                border: none;
+                outline: none;
+                padding: 10px 20px; /* Увеличиваем отступы внутри кнопки */
+                font-size: 20px; /* Увеличиваем размер шрифта */
+            }
+            .save {
+                color: #191970; /* Цвет текста кнопки */
+                cursor: pointer; /* Курсор при наведении на кнопку */
+                border: none;
+                outline: none;
+                padding: 10px 20px; /* Увеличиваем отступы внутри кнопки */
+                font-size: 20px; /* Увеличиваем размер шрифта */
+            }
+            aside p {
+                display: block;
+                color: #191970;
+                transform: translate(220%, -30%);
+            }
+            aside p1 {
+                display: block;
+                color: #000;
+                transform: translate(5%, 3300%);
+            }
+            aside p2 {
+                display: block;
+                color: #000;
+                transform: translate(90%, 3000%);
+            }
+            aside h5 {
+                display: block;
+                color: #191970;
+            }
+            .inscription1 {
+                transform: translate(0%, 80%);
+            }
+            .inscription2 {
+                transform: translate(15%, 130%);
+            }
+            .inscription3 {
+                transform: translate(-280%, 680%);
+            }
+            .photo-container {
+                display: flex;
+                position: relative;
+                margin-top: 20px;
+                transform: translate(-120%, -80%);
+            }
+
+            .photo-container img {
+                width: 180px; /* Размер фото по умолчанию */
+                border-radius: 50%;
+            }
+
+            #photo-upload {
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+            }
+
+            #upload-button {
+                transform: translate(28%, 670%);
+                position: absolute;
+            }
+            .upload {
+                background: none;
+                color: #191970; /* Цвет текста кнопки */
+                cursor: pointer; /* Курсор при наведении на кнопку */
+                border: none;
+                outline: none;
+            }
+        </style>
+<body>
+    <aside>
+        <div class="logo-container">
+            <a href="/"><img src="{% static 'main/img/logo_simple.png' %}" alt="Лого"></a>
+            <div class="logo-text">
+                <div class="logo-gold">
+                    <span class="gold">Золото</span>
+                </div>
+                <div class="logo-siberia">
+                    <span class="siberia">Сибири</span>
+                </div>
+            </div>
+            <div class="login-overlay">
+                <input type="text" placeholder="Введите логин" style="outline: none;">
+            </div>
+            <div class="password-overlay">
+                <input type="text" placeholder="Введите пароль" style="outline: none;">
+            </div>
+            <div class="knopki">
+                <div class="login-to-account">
+                    <button type="submit" class="login-to-account">Войти</button>
+                </div>
+                <div class="registration">
+                    <button type="submit" onclick="window.location.href='/registration'" class="registration">Регистрация</button>
+                </div>
+            </div>
+            <div class="icons">
+                <a href=""><img src="{% static 'main/img/search.png' %}" alt="Поиск"></a>
+                <a href=""><img src="{% static 'main/img/heart.png' %}" alt="Избранное"></a>
+                <a href="/user"><img src="{% static 'main/img/user.png' %}" alt="Пользователь"></a>
+                <a href=""><img src="{% static 'main/img/envelope.png' %}" alt="Обратная связь"></a>
+            </div>
+        </div>
+
+
+        <!--<h3>Навигация</h3>-->
+        <ul>
+            <a href="/attractions"><li>достопримечательности</li></a>
+            <a href="/route"><li>маршрут</li></a>
+            <a href="/about"><li>о нас</li></a>
+        </ul>
+
+        <div class="reg-scoreboard">
+            <p>Дата регистрации</p>
+            <div class="inscription1">
+                <h5>Логин</h5>
+            </div>
+            <div class="inscription2">
+                <h5>О себе:</h5>
+            </div>
+            <div class="inscription3">
+                <h5>Избранное</h5>
+            </div>
+            <div class="about">
+                <input type="text" placeholder="Расскажите о себе" style="outline: none;">
+            </div>
+            <div class="photo-container">
+                <img src="/static/main/img/default.png" alt="Фото по умолчанию">
+                <input type="file" id="photo-upload" accept="image/png, image/jpeg">
+                <button id="upload-button" class="upload">Выбрать фото</button>
+            </div>
+        </div>
+        <div class="button_cancel_save">
+            <div class="cancel">
+                <button type="submit" class="cancel">Отмена</button>
+            </div>
+            <div class="save">
+                <button type="submit" class="save">Сохранить</button>
+            </div>
+        </div>
+
+        <p1>Шпигальских А.В.</p1>
+        <p1>Ожогина Т.А.</p1>
+        <p1>почта@mail.com</p1>
+
+        <p2>Связь с нами</p2>
+    </aside>
+    <main>
+    {% block content %}
+    {% endblock %}
+    </main>
+</body>
+</html>

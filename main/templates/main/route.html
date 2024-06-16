@@ -1,0 +1,510 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="rus">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{% block title %}Маршрут{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+        <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+        <style>
+            #container {
+               width: 1150px;
+               height: 700px;
+               position: absolute;
+               transform: translate(15%, 5%);
+            }
+            #reset {
+                padding: 4px 10px;
+                background: #00a81f;
+                border-radius: 4px;
+                box-shadow: 0 1px 3px 0 rgba(38, 38, 38, 0.5);
+                border: none;
+                color: #fff;
+                font-size: 12px;
+                cursor: pointer;
+            }
+             #reset:disabled {
+                background: #f2f2f2;
+                color: #6e6d6d;
+                cursor: default;
+            }
+            body {
+            display: flex;
+            height: 95vh;
+            width: 95vw;
+            background-image: url("/static/main/img/attractions.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+                }
+
+a{
+    text-decoration: none;
+}
+img {
+    width: 1000px;
+    height: auto;
+    /* float: left; */
+}
+
+.icons {
+    display: flex;
+    transform: translate(420%, -140%);
+    /* float: left; */
+}
+
+.icons img {
+    width: 20px;
+    height: 20px;
+    margin-right: 30px; /* Добавляем расстояние между картинками */
+}
+
+.icons a {
+    display: block; /* Расширяем ссылку на всю область картинки */
+}
+
+.icons a:hover img {
+    opacity: 0.7; /* Добавляем эффект изменения прозрачности при наведении на картинку */
+}
+
+.logo-container {
+    margin-top: 20px;
+    display: flex; /* Используем flexbox для расположения элементов в строку */
+    align-items: flex-end; /* Выравниваем элементы по нижнему краю */
+}
+
+.login-overlay {
+    position: absolute;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255,255,255,0.5); /* Цвет прямоугольника */
+    padding: 10px;
+    border-radius: 10px;
+    color: #191970;
+}
+
+.login-overlay input {
+    width: 200px;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    color: #191970;
+}
+
+.password-overlay {
+    position: absolute;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255,255,255,0.5); /* Цвет прямоугольника */
+    padding: 10px;
+    border-radius: 10px;
+    color: #191970;
+}
+
+.password-overlay input {
+    width: 200px;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    color: #191970;
+}
+
+.logo-text {
+    font-size: 28px;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    display: block;
+    flex-direction: column; /* Столбцы вместо строк */
+    margin-left: 2px; /* Добавляем отступ слева для разделения от изображения */
+}
+
+.logo-gold {
+    color : rgba(245, 176, 81, 1);
+}
+.logo-siberia {
+    color: rgba(67, 99, 135, 1);
+}
+.gold, .siberia {
+    margin: 0; /* Убираем отступы у текста */
+}
+
+.map_ {
+    position: absolute;
+    transform: translate(20%, 5%);
+
+
+}
+
+.knopki {
+    font-size: 16px;
+    display: block;
+    transform: translate(650%, -60%);
+}
+
+.registration {
+    background: none;
+    color: #191970; /* Цвет текста кнопки */
+    cursor: pointer; /* Курсор при наведении на кнопку */
+    border: none;
+    outline: none;
+}
+.login-to-account {
+    background: none;
+    color: #191970; /* Цвет текста кнопки */
+    cursor: pointer; /* Курсор при наведении на кнопку */
+    border: 0;
+    outline: none;
+}
+/*.gold {
+    font-size: 24px;
+    color: gold;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    margin-bottom: -15px;
+}
+
+.siberia {
+    font-size: 24px;
+    color: #191970;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    margin-top: -10px;
+}
+.logo {
+    display: block;
+} */
+
+aside h3 {
+    margin-left: 50px;
+    font-size: 28px;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    transform: translate(50%, 40%);
+    }
+aside ul li {
+    color: #191970;
+    display: inline;
+    margin: 60px;
+    font-size: 20px;
+    /*font-weight: bold;*/
+    transition: all.6s ease;
+}
+
+aside ul li:hover, aside ul a:hover {
+    display: center;
+    text-align: right;
+    color: rgba(198, 122, 17, 1);
+    text-decoration: none;
+    transform: scale(1.05);
+}
+aside ul1 {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    }
+aside ul1 li1 {
+    color: #8B4513;
+    display: inline;
+    margin: 60px;
+    font-size: 30px;
+    /*font-weight: bold;*/
+    transition: all.6s ease;
+    position: absolute;
+    left: 35%;
+    transform: translate(140%, 1700%);
+    background-color: rgba(255,255,255,0.5); /* Цвет прямоугольника */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+aside p1 {
+    display: block;
+    color: #000;
+    transform: translate(5%, 3700%);
+}
+aside p2 {
+    display: block;
+    color: #000;
+    transform: translate(90%, 3500%);
+}
+
+        </style>
+    </head>
+    <body>
+     <aside>
+        <div class="logo-container">
+            <a href="/"><img src="{% static 'main/img/logo_simple.png' %}" alt="Лого" style="width: 200px;"></a>
+            <div class="logo-text">
+                <div class="logo-gold">
+                    <span class="gold">Золото</span>
+                </div>
+                <div class="logo-siberia">
+                    <span class="siberia">Сибири</span>
+                </div>
+            </div>
+            <div class="login-overlay">
+                <input type="text" placeholder="Введите логин" style="outline: none;">
+            </div>
+            <div class="password-overlay">
+                <input type="text" placeholder="Введите пароль" style="outline: none;">
+            </div>
+            <div class="knopki">
+                <div class="login-to-account">
+                    <button type="submit" class="login-to-account">Войти</button>
+                </div>
+                <div class="registration">
+                    <button type="submit" onclick="window.location.href='/registration'" class="registration">Регистрация</button>
+                </div>
+            </div>
+            <div class="icons">
+                <a href=""><img src="{% static 'main/img/search.png' %}" alt="Поиск"></a>
+                <a href=""><img src="{% static 'main/img/heart.png' %}" alt="Избранное"></a>
+                <a href="/user"><img src="{% static 'main/img/user.png' %}" alt="Пользователь"></a>
+                <a href=""><img src="{% static 'main/img/envelope.png' %}" alt="Обратная связь"></a>
+            </div>
+        </div>
+
+        <!--<h3>Навигация</h3>-->
+        <ul>
+            <a href="/attractions"><li>достопримечательности</li></a>
+            <a href="/route"><li>маршрут</li></a>
+            <a href="/about"><li>о нас</li></a>
+        </ul>
+
+        <div id="container"></div>
+        <script src="https://mapgl.2gis.com/api/js/v1"></script>
+        <script src="https://unpkg.com/@2gis/mapgl-directions@^2/dist/directions.js"></script>
+        <script>
+            const map = new mapgl.Map('container', {
+                center: [83.76, 53.35],
+                zoom: 7,
+                key: 'a69cb772-d6ee-4365-9c45-40d4d37156b5',
+            });
+
+             const locations = [
+                        { coord: [51.905, 85.853], name: 'Озеро Ая' },
+                        { coord: [52.86, 78.61], name: 'Озеро Яровое' },
+                        { coord: [51.994, 84.972], name: 'санаторий Белокуриха' },
+                        { coord: [52.0655, 85.7245], name: 'гора Бабырган' },
+                        { coord: [51.295, 82.648], name: 'озеро Белое' },
+                        { coord: [52.4127, 85.7136], name: 'Памятник В.М. Шукшину' },
+                        { coord: [52.2922, 85.65491], name: 'Лебединый заказник' },
+                        { coord: [51.37, 82.195], name: 'Колыванское озеро' },
+                        { coord: [51.361928, 84.58991], name: 'Шинокские водопады' },
+                        { coord: [51.397329, 84.676544], name: 'Денисова пещера' },
+                        { coord: [51.939438, 84.897027], name: 'Мишина гора' },
+                        { coord: [51.185104, 83.689641], name: 'Царский курган' },
+                        { coord: [51.967486, 84.926037], name: 'гора Церковка' },
+                        { coord: [53.260253, 83.576881], name: 'Барнаульский ленточный бор' },
+                        { coord: [53.215473, 84.636597], name: 'Музей Г.С. Титова' },
+                        { coord: [52.970537, 79.512385], name: 'Озеро Кулундинское' },
+                        { coord: [51.693768, 79.737422], name: 'Озеро Малиновое' },
+                        { coord: [53.117166, 82.479751], name: 'Касмалинский заказник' },
+                        { coord: [51.600329, 82.287201], name: 'Музей М.Т. Калашникова' },
+                        { coord: [51.781934, 84.992012], name: 'Маральник "Никольское"' }
+                                ];
+
+            const coords = [
+                [85.853, 51.905],
+                [78.61, 52.86],
+                [78.61, 52.86],
+                [84.972, 51.994],
+                [84.972, 51.994],
+                [85.7245, 52.0655],
+                [82.648, 51.295],
+                [85.7136, 52.4127],
+                [85.65491, 52.2922],
+                [82.195, 51.37],
+                [84.58991, 51.361928],
+                [84.676544, 51.397329],
+                [84.897027, 51.939438],
+                [83.689641, 51.185104],
+                [84.926037, 51.967486],
+                [83.576881, 53.260253],
+                [82.479751, 53.117166],
+                [82.287201, 51.600329],
+                [84.992012, 51.781934],
+                [84.636597, 53.215473],
+                [79.512385, 52.970537],
+                [79.737422, 51.693768],
+                [82.479751, 53.117166],
+                [82.287201, 51.600329],
+                [84.992012, 51.781934],
+            ];
+
+            coords.forEach((coord) => {
+                const marker = new mapgl.Marker(map, {
+                    coordinates: coord,
+                });
+            });
+
+            const Location1 = new mapgl.Marker(map, {
+                    coordinates: [85.853, 51.905],
+                    label: {text: "Озеро Ая",},
+                });
+
+            const Location2 = new mapgl.Marker(map, {
+                    coordinates: [78.61, 52.86],
+                    label: {text: "Озеро Яровое",},
+                });
+            const Location3 = new mapgl.Marker(map, {
+                    coordinates: [84.972, 51.994],
+                    label: {text: "санаторий Белокуриха",},
+                });
+
+                const Location4 = new mapgl.Marker(map, {
+                    coordinates: [85.7245, 52.0655],
+                    label: {text: "гора Бабырган",},
+                });
+
+            const Location5 = new mapgl.Marker(map, {
+                    coordinates: [82.648, 51.295],
+                    label: {text: "озеро Белое",},
+                });
+            const Location6 = new mapgl.Marker(map, {
+                    coordinates: [85.7136, 52.4127],
+                    label: {text: "Памятник В.М. Шукшину",},
+                });
+
+                const Location7 = new mapgl.Marker(map, {
+                    coordinates: [85.65491, 52.2922],
+                    label: {text: "Лебединый заказник",},
+                });
+
+            const Location8 = new mapgl.Marker(map, {
+                    coordinates: [82.195, 51.37],
+                    label: {text: "Колыванское озеро",},
+                });
+            const Location9 = new mapgl.Marker(map, {
+                    coordinates: [84.58991, 51.361928],
+                    label: {text: "Шинокские водопады",},
+                });
+
+                const Location10 = new mapgl.Marker(map, {
+                    coordinates: [84.676544, 51.397329],
+                    label: {text: "Денисова пещера",},
+                });
+
+            const Location11 = new mapgl.Marker(map, {
+                    coordinates: [84.897027, 51.939438],
+                    label: {text: "Мишина гора",},
+                });
+            const Location12 = new mapgl.Marker(map, {
+                    coordinates: [83.689641, 51.185104],
+                    label: {text: "Царский курган",},
+                });
+
+                const Location13 = new mapgl.Marker(map, {
+                    coordinates: [84.926037, 51.967486],
+                    label: {text: "гора Церковка",},
+                });
+
+            const Location14 = new mapgl.Marker(map, {
+                    coordinates: [83.576881, 53.260253],
+                    label: {text: "Барнаульский ленточный бор",},
+                });
+            const Location15 = new mapgl.Marker(map, {
+                    coordinates: [84.636597, 53.215473],
+                    label: {text: "Музей Г.С. Титова",},
+                });
+
+                const Location16 = new mapgl.Marker(map, {
+                    coordinates: [79.512385, 52.970537],
+                    label: {text: "Озеро Кулундинское",},
+                });
+
+            const Location17 = new mapgl.Marker(map, {
+                    coordinates: [79.737422, 51.693768],
+                    label: {text: "Озеро Малиновое",},
+                });
+            const Location18 = new mapgl.Marker(map, {
+                    coordinates: [82.479751, 53.117166],
+                    label: {text: "Касмалинский заказник",},
+                });
+
+             const Location19 = new mapgl.Marker(map, {
+                    coordinates: [82.287201, 51.600329],
+                    label: {text: "Музей М.Т. Калашниковае",},
+                });
+
+
+            const directions = new mapgl.Directions(map, {
+                directionsApiKey: 'a69cb772-d6ee-4365-9c45-40d4d37156b5',
+            });
+            const markers = [];
+
+            let firstPoint;
+            let secondPoint;
+            let thirdPoint;
+            // A current selecting point
+            let selecting = 'a';
+
+            const controlsHtml = `<button id="reset">Очистить выбор</button> `;
+            new mapgl.Control(map, controlsHtml, {
+                position: 'topLeft',
+            });
+              const controlsHtml1 = `<button>Построить маршрут</button> `;
+            new mapgl.Control(map, controlsHtml1, {
+                position: 'topRight',
+            });
+            const resetButton = document.getElementById('reset');
+
+            resetButton.addEventListener('click', function() {
+                selecting = 'a';
+                firstPoint = undefined;
+                secondPoint = undefined;
+                thirdPoint= undefined;
+                directions.clear();
+            });
+
+            map.on('click', (e) => {
+                const coords = e.lngLat;
+
+                if (selecting != 'end') {
+                    // Just to visualize selected points, before the route is done
+                    markers.push(
+                        new mapgl.Marker(map, {
+                            coordinates: coords,
+                            icon: 'https://docs.2gis.com/img/dotMarker.svg',
+                        }),
+                    );
+                }
+
+                if (selecting === 'a') {
+                    firstPoint = coords;
+                    selecting = 'b';
+                } else if (selecting === 'b') {
+                    secondPoint = coords;
+                    selecting = 'c';
+                } else if (selecting === 'c'){
+                    thirdPoint = coords;
+                    selecting = 'end';
+                }
+
+                // If all points are selected — we can draw the route
+                if (firstPoint && secondPoint && thirdPoint) {
+                    directions.carRoute({
+                        points: [firstPoint, secondPoint, thirdPoint],
+                    });
+                    markers.forEach((m) => {
+                        m.destroy();
+                    });
+                }
+            });
+        </script>
+     <p1>Шпигальских А.В.</p1>
+        <p1>Ожогина Т.А.</p1>
+        <p1>почта@mail.com</p1>
+
+        <p2>Связь с нами</p2>
+    </aside>
+    <main>
+    {% block content %}
+    {% endblock %}
+    </main>
+    </body>
+</html>
